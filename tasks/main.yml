@@ -29,3 +29,9 @@
 - name: switch to ZSH
   user: name={{user}} shell=/usr/bin/zsh
   sudo: True
+  when: ansible_os_family != 'Darwin'
+
+- name: Switch to ZSH (OSX)
+  command: chsh -s /bin/zsh
+  sudo: false 
+  when: ansible_os_family == 'Darwin'
