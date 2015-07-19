@@ -1,15 +1,18 @@
-Bash
-========
+# oh-my-zsh
 
-Install zsh and oh-my-zsh
+Installs zsh and oh-my-zsh
 
-Requirements
-------------
+Unlike many other playbooks, this one is intentionally simple, leaving out any oh-my-zsh related configuration. It installs a very simple default .zshrc into $HOME. Further configuration should happen with something like dotfiles.
 
- - python-pycurl and python-software-properties installed 
+## Example Playbook (OSX)
 
-Example Playbook
--------------------------
+    - hosts: servers
+      roles:
+         - glennr.oh-my-zsh
+
+(installs to ansible user)
+
+## Example Playbook (Debian/Ubuntu)
 
     - hosts: servers
       vars:

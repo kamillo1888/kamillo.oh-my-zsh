@@ -10,21 +10,15 @@
   apt: pkg=zsh state=present
   when: ansible_os_family == 'Debian'
 
-- name: install oh-my-zsh
+- name: Install oh-my-zsh
   git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
   sudo: false
 
-- name: Backing up existing ~/.zshrc
-  command: if [ -f ~{{user}}/.zshrc ]; then mv ~{{user}}/.zshrc{,.orig}; fi
-  sudo: false
-
-- name: Creating new ~/.zshrc
-  command: cp ~{{user}}/.oh-my-zsh/templates/zshrc.zsh-template ~{{user}}/.zshrc
-  sudo: false
-
-- name: Add oh-my-solarized theme
-  copy: src=oh-my-zsh.theme dest=~{{user}}/.oh-my-zsh/themes/oh-my-zsh.theme
-  sudo: false
+- name: Copy .zshrc to $HOME
+  sudo: no
+  template:
+    src: zshrc.j2
+    dest: ~/.zshrc
 
 - name: switch to ZSH
   user: name={{user}} shell=/usr/bin/zsh
