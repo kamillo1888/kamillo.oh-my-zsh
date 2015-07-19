@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: "Alex Lourie <djay.il@gmail.com>"
+  author: "Glenn Roberts <g@glenn-roberts.com>"
   description: Install zsh and oh-my-zsh config
   license: LGPL
   min_ansible_version: 1.4
@@ -10,6 +10,9 @@ galaxy_info:
       - wheezy
   - name: Ubuntu
   - name: elementary os
+  - name: Darwin
+    versions:
+      - Yosemite
   categories:
     - system
 dependencies: []
