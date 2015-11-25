@@ -1,18 +1,18 @@
 ---
 
-- name: Install zsh in Redhat derivatives
-  sudo: yes
-  yum: name=zsh state=installed
-  when: ansible_os_family == 'RedHat'
-
 - name: Install zsh in Debian derivatives
-  sudo: yes
+  sudo: no
   apt: pkg=zsh state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Install git in Debian derivatives
+  sudo: no
+  apt: pkg=git state=present
   when: ansible_os_family == 'Debian'
 
 - name: Install oh-my-zsh
   git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
-  sudo: false
+  sudo: no
 
 - name: Copy .zshrc to $HOME
   sudo: no
@@ -21,7 +21,7 @@
     dest: ~/.zshrc
 
 - name: switch to ZSH
-  user: name={{user}} shell=/usr/bin/zsh
+  user: name=root shell=/usr/bin/zsh
   sudo: no
   when: ansible_os_family != 'Darwin'
 
